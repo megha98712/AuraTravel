@@ -1,131 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AuraTravel Maharashtra | AI Explorer</title>
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
 
-        :root {
-            --primary-neon: #00f2ff;
-            --accent-purple: #bd00ff;
-            --bg-dark: #050508;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; }
-
-        body { background: var(--bg-dark); color: #fff; line-height: 1.6; overflow-x: hidden; }
-
-        /* Navigation */
-        .glass-nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1.2rem 8%; background: rgba(5, 5, 8, 0.9);
-            backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .logo { font-size: 1.8rem; font-weight: 700; letter-spacing: -1px; }
-        .logo span { color: var(--primary-neon); text-shadow: 0 0 15px var(--primary-neon); }
-        .nav-links { display: flex; list-style: none; }
-        .nav-links a { color: #aaa; text-decoration: none; margin: 0 1.5rem; transition: 0.3s; font-weight: 500; }
-        .nav-links a:hover { color: var(--primary-neon); }
-
-        /* Hero Section */
-        .hero { 
-            height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1570160893911-3796856037e1?auto=format&fit=crop&w=1600'); 
-            background-size: cover; background-position: center; position: relative; 
-        }
-        
-        .hero-content { z-index: 1; max-width: 900px; padding: 20px; }
-        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
-        .hero h1 span { background: linear-gradient(90deg, var(--primary-neon), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        /* AI Search Bar */
-        .search-bar-ai { 
-            background: rgba(255,255,255,0.05); padding: 8px; border-radius: 50px; 
-            display: flex; border: 1px solid var(--border); margin: 40px auto 0; 
-            max-width: 600px; box-shadow: 0 10px 50px rgba(0,0,0,0.5); 
-        }
-        .search-bar-ai input { background: transparent; border: none; padding: 15px 20px; color: white; flex: 1; outline: none; font-size: 1.1rem; }
-        
-        .btn-neon { 
-            background: var(--primary-neon); border: none; padding: 12px 30px; border-radius: 40px; 
-            font-weight: 700; cursor: pointer; transition: 0.4s; color: black;
-        }
-        .btn-neon:hover { box-shadow: 0 0 30px var(--primary-neon); transform: scale(1.05); }
-
-        /* Filters */
-        .filter-container { text-align: center; margin-top: 30px; }
-        .pill { 
-            background: var(--glass); border: 1px solid var(--border); color: white; 
-            padding: 10px 20px; border-radius: 50px; margin: 5px; cursor: pointer; transition: 0.3s; 
-        }
-        .pill:hover, .pill.active { border-color: var(--primary-neon); background: rgba(0, 242, 255, 0.1); }
-
-        /* Destinations */
-        .container { padding: 80px 8%; }
-        .section-title { font-size: 2.5rem; margin-bottom: 40px; text-align: center; }
-        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
-        .card { 
-            background: var(--glass); border-radius: 24px; overflow: hidden; 
-            border: 1px solid var(--border); transition: 0.4s; position: relative; 
-        }
-        .card:hover { transform: translateY(-10px); border-color: var(--primary-neon); }
-        .card-img { height: 250px; background-size: cover; background-position: center; }
-        .card-body { padding: 25px; }
-        .ai-tag { color: var(--primary-neon); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Modal */
-        .modal { 
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); 
-        }
-        .modal-content { 
-            background: #0a0b10; margin: 10% auto; padding: 40px; border: 1px solid var(--primary-neon); 
-            max-width: 500px; border-radius: 24px; position: relative; text-align: center;
-        }
-        .close { position: absolute; right: 20px; top: 15px; font-size: 2rem; cursor: pointer; color: #fff; }
-        
-        form input { 
-            width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; 
-            border: 1px solid var(--border); background: #111; color: white; 
-        }
-
-        #ai-loader { color: var(--primary-neon); margin-top: 15px; font-weight: bold; }
-        .hidden { display: none; }
-    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header>
         <nav class="glass-nav">
             <div class="logo">Maharashtra<span>AI</span></div>
+
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#destinations">Explore</a></li>
                 <li><a href="#features">Features</a></li>
             </ul>
+
             <button class="btn-neon">Sign In</button>
         </nav>
     </header>
 
     <section class="hero" id="home">
         <div class="hero-content">
+
             <h1>Maharashtra, Reimagined by <span>Neural AI.</span></h1>
-            <p>From Konkan coast to Sahyadri peaks, let our AI plan your perfect escape.</p>
-            
+
+            <p>
+                From Konkan coast to Sahyadri peaks,
+                let our AI plan your perfect escape.
+            </p>
+
             <div class="search-bar-ai">
-                <input type="text" id="ai-input" placeholder="Search 'Beaches', 'Forts', or 'Hill stations'...">
-                <button id="ai-btn" class="btn-neon"><i class="fas fa-brain"></i> Analyze</button>
+                <input
+                    type="text"
+                    id="ai-input"
+                    placeholder="Search 'Beaches', 'Forts', or 'Hill stations'..."
+                >
+
+                <button id="ai-btn" class="btn-neon">
+                    <i class="fas fa-brain"></i> Analyze
+                </button>
             </div>
-            <div id="ai-loader" class="hidden">🤖 AI is scanning Sahyadri weather and traffic...</div>
+
+            <div id="ai-loader" class="hidden">
+                🤖 AI is scanning Sahyadri weather and traffic...
+            </div>
 
             <div class="filter-container">
                 <button class="pill" onclick="suggestByMood('all')">All</button>
@@ -133,94 +60,60 @@
                 <button class="pill" onclick="suggestByMood('fort')">🚩 Forts</button>
                 <button class="pill" onclick="suggestByMood('nature')">🌲 Hill Stations</button>
             </div>
+
         </div>
     </section>
 
     <section id="destinations" class="container">
+
         <h2 class="section-title">AI Curated For You</h2>
-        <div class="grid-cards" id="dest-container">
-            </div>
+
+        <div class="grid-cards" id="dest-container"></div>
+
     </section>
 
+    <!-- Modal -->
     <div id="booking-modal" class="modal">
+
         <div class="modal-content">
+
             <span class="close" onclick="toggleModal()">&times;</span>
-            <h2 id="modal-title" style="color: var(--primary-neon);">Book Trip</h2>
-            <p id="modal-desc" style="margin: 15px 0; color: #ccc;">Plan optimized for best weather.</p>
-            <form onsubmit="event.preventDefault(); alert('AI Booking Confirmed! Check your email.'); toggleModal();">
+
+            <h2 id="modal-title">Book Trip</h2>
+
+            <p id="modal-desc">
+                Plan optimized for best weather.
+            </p>
+
+            <form
+                onsubmit="event.preventDefault();
+                alert('AI Booking Confirmed! Check your email.');
+                toggleModal();"
+            >
+
                 <input type="text" placeholder="Your Name" required>
+
                 <input type="date" required>
-                <input type="number" placeholder="Total Travelers" min="1" required>
-                <button type="submit" class="btn-neon" style="width: 100%; margin-top: 10px;">Finalize Itinerary</button>
+
+                <input
+                    type="number"
+                    placeholder="Total Travelers"
+                    min="1"
+                    required
+                >
+
+                <button type="submit" class="btn-neon submit-btn">
+                    Finalize Itinerary
+                </button>
+
             </form>
+
         </div>
+
     </div>
 
-    <script>
-        const destinations = [
-            { id: 1, name: "Lonavala Clouds", type: "nature", price: "₹4,000", tags: "hillstation fog", img: "https://images.unsplash.com/photo-1626715206440-410a527c6225?auto=format&fit=crop&w=800", desc: "Sahyadri's misty trails optimized for monsoon trekking." },
-            { id: 2, name: "Ganpatipule Beach", type: "beach", price: "₹6,500", tags: "beach ocean konkan", img: "https://images.unsplash.com/photo-1590559253013-94c6536551ca?auto=format&fit=crop&w=800", desc: "Pristine white sands with AI weather monitoring for sunsets." },
-            { id: 3, name: "Raigad Fort", type: "fort", price: "₹2,500", tags: "history fort adventure", img: "https://images.unsplash.com/photo-1623151443427-047f3b89097e?auto=format&fit=crop&w=800", desc: "Experience the capital of Maratha Empire with AR guides." },
-            { id: 4, name: "Mahabaleshwar", type: "nature", price: "₹5,200", tags: "strawberry cold nature", img: "https://images.unsplash.com/photo-1598285511043-461d36d4002e?auto=format&fit=crop&w=800", desc: "Fresh berry farms and scenic valley views curated by AI." },
-            { id: 5, name: "Alibaug Coast", type: "beach", price: "₹5,800", tags: "beach water-sports", img: "https://images.unsplash.com/photo-1560932505-f996d9337588?auto=format&fit=crop&w=800", desc: "Weekend getaway with smart ferry schedules and luxury stays." },
-            { id: 6, name: "Harihareshwar", type: "fort", price: "₹3,400", tags: "temple beach history", img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800", desc: "The 'Kashi of South' with rugged cliffs and coastal beauty." }
-        ];
+    <!-- External JS -->
+    <script src="script.js"></script>
 
-        const container = document.getElementById('dest-container');
-        const loader = document.getElementById('ai-loader');
-
-        function renderCards(data) {
-            container.innerHTML = "";
-            data.forEach(dest => {
-                container.innerHTML += `
-                    <div class="card">
-                        <div class="card-img" style="background-image: url('${dest.img}')"></div>
-                        <div class="card-body">
-                            <span class="ai-tag">#Maharashtra_AI</span>
-                            <h3 style="margin: 10px 0;">${dest.name}</h3>
-                            <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 15px;">${dest.desc}</p>
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="font-weight: bold; color: var(--primary-neon);">${dest.price}</span>
-                                <button class="btn-neon" style="padding: 8px 15px; font-size: 0.8rem;" onclick="bookNow('${dest.name}', '${dest.desc}')">Explore</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function suggestByMood(mood) {
-            loader.classList.remove('hidden');
-            container.style.opacity = "0.3";
-            
-            setTimeout(() => {
-                loader.classList.add('hidden');
-                container.style.opacity = "1";
-                const filtered = mood === 'all' ? destinations : destinations.filter(d => d.type === mood || d.tags.includes(mood));
-                renderCards(filtered);
-            }, 800);
-        }
-
-        // AI Search Box Logic
-        document.getElementById('ai-btn').addEventListener('click', () => {
-            const query = document.getElementById('ai-input').value.toLowerCase();
-            suggestByMood(query || 'all');
-        });
-
-        // Modal Logic
-        function toggleModal() {
-            const m = document.getElementById('booking-modal');
-            m.style.display = (m.style.display === "block") ? "none" : "block";
-        }
-
-        function bookNow(name, desc) {
-            document.getElementById('modal-title').innerText = "AI Plan: " + name;
-            document.getElementById('modal-desc').innerText = desc;
-            toggleModal();
-        }
-
-        // Initial Load
-        renderCards(destinations);
-    </script>
 </body>
 </html>
